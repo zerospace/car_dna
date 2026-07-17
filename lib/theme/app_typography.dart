@@ -52,9 +52,10 @@ abstract final class AppTypography {
       ),
       // "Decode any vehicle in seconds." — Heading 1
       headlineLarge: _jakarta(
-        fontSize: 28,
+        fontSize: 30,
         fontWeight: FontWeight.w800,
         letterSpacing: -0.5,
+        height: 1.12, // Figma: 33.6px line-height on 30px type
       ),
       // "Honda Accord" vehicle title — Heading 2
       headlineMedium: _jakarta(
@@ -112,5 +113,15 @@ abstract final class AppTypography {
     fontSize: 11,
     fontWeight: FontWeight.w400,
     color: AppColors.textMuted,
+  );
+
+  static TextStyle get logo =>
+      _jakarta(fontSize: 18, fontWeight: FontWeight.w800, letterSpacing: -0.3, color: AppColors.textPrimary);
+
+  static TextStyle get monoEyebrowAccent => _mono(
+      fontSize: 11,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 1.5,
+      color: AppColors.primary
   );
 }

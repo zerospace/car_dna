@@ -58,4 +58,12 @@ abstract final class AppColors {
   static const neutral300 = Color(0xFFC8C8CF); // French Gray
   static const neutral700 = Color(0xFF3A3A40); // Tuna
   static const neutral800 = Color(0xFF5A5A62); // Scarpa Flow
+
+  // Card gradient top-left stop (159.77deg gradient), used behind the
+  // "Scan VIN" card.
+  static const scanCardGradientStart = Color(0xFF1A2A4D); // azure/20
+  static const scanCardGradientEnd = Color(0xFF121319); // blue/8
+
+  // Glow shadow behind the camera icon badge on the "Scan VIN" card.
+  static const scanIconGlow = Color(0x994D8DFF); // primary @ 60%
 }
