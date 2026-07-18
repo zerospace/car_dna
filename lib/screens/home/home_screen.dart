@@ -1,3 +1,4 @@
+import 'package:car_dna/screens/enter_vin/enter_vin_screen.dart';
 import 'package:car_dna/screens/home/home_viewmodel.dart';
 import 'package:car_dna/screens/home/widgets/enter_vin_manually_button.dart';
 import 'package:car_dna/screens/home/widgets/recent_searches_section.dart';
@@ -63,7 +64,9 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 12),
               EnterVinManuallyButton(
                 onTap: () {
-                  // TODO: open enter manually
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const EnterVinScreen())
+                  );
                 },
               ),
               const SizedBox(height: 34),

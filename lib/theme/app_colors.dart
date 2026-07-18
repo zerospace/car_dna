@@ -66,4 +66,24 @@ abstract final class AppColors {
 
   // Glow shadow behind the camera icon badge on the "Scan VIN" card.
   static const scanIconGlow = Color(0x994D8DFF); // primary @ 60%
+
+  /// Filled VIN cell surface. (Figma grey/12)
+  static const vinCellFilled = Color(0xFF1D1D22);
+
+  /// Empty VIN cell surface. (Figma grey/7)
+  static const vinCellEmpty = Color(0xFF121214);
+
+  /// Filled VIN cell border. (Figma white 14%)
+  static const borderStrong = Color(0x24FFFFFF);
+
+  /// Empty VIN cell border. (Figma white 7%)
+  static const borderFaint = Color(0x12FFFFFF);
+
+  /// Disabled / secondary button surface, e.g. inactive "Decode VIN".
+  /// (Figma grey/10)
+  static const surfaceDisabled = Color(0xFF17171B);
+
+  /// Circular icon-badge surface, e.g. the app-bar back button.
+  /// (Figma grey/9-2)
+  static const surfaceBadge = Color(0xFF151518);
 }

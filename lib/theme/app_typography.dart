@@ -124,4 +124,28 @@ abstract final class AppTypography {
       letterSpacing: 1.5,
       color: AppColors.primary
   );
+
+  /// Screen subtitle paragraph, e.g. the VIN "Found on the driver's-side…"
+  /// helper copy. (14 / Regular, 21px line-height, muted grey.)
+  static TextStyle get helperBody => _jakarta(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    height: 1.5,
+    color: AppColors.textMuted,
+  );
+
+  /// Small helper caption below an input, e.g. "Letters I, O, Q aren't
+  /// used in a VIN".
+  static TextStyle get helperCaption => _jakarta(
+    fontSize: 12.5,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textFaint,
+  );
+
+  /// Mono field counter, e.g. "8/17".
+  static TextStyle get monoCounter => _mono(
+    fontSize: 12.5,
+    fontWeight: FontWeight.w400,
+    color: AppColors.textMuted,
+  );
 }
