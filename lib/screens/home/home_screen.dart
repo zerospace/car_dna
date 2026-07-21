@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               EnterVinManuallyButton(
                 onTap: () async {
                   await Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const EnterVinScreen(initialVin: 'LJCPCBLCX11000237'))
+                    MaterialPageRoute(builder: (_) => const EnterVinScreen(initialVin: 'WBA3C3G50ENS69369'))
                   );
                   await _viewModel.refresh();
                 },
