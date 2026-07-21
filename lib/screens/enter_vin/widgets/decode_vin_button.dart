@@ -15,6 +15,7 @@ class DecodeVinButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       child: InkWell(
         onTap: enabled ? onTap : null,
+        borderRadius: BorderRadius.circular(16),
         child: Ink(
           decoration: BoxDecoration(
             color: enabled ? AppColors.primary : AppColors.surfaceDisabled,

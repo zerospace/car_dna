@@ -1,30 +1,32 @@
-import 'package:car_dna/models/recent_search.dart';
+import 'package:car_dna/models/vehicle_info.dart';
+import 'package:car_dna/services/vehicle_database.dart';
 import 'package:flutter/material.dart';
 
-const _mockRecentSearches = [
-  RecentSearch(vin: '1HGCV1F34LA802145', title: '2020 Honda Accord'),
-  RecentSearch(vin: '3TMCZ5AN8KM234517', title: '2019 Toyota Tacoma'),
-  RecentSearch(vin: 'JM1GL1VM9J1318842', title: '2018 Mazda Mazda6'),
-];
-
 class HomeViewModel extends ChangeNotifier {
-  HomeViewModel() {
+  HomeViewModel({VehicleDatabase? database})
+      : _database = database ?? VehicleDatabase.instance {
     _loadRecentSearches();
   }
 
-  List<RecentSearch> _recentSearches = [];
-  List<RecentSearch> get recentSearches => _recentSearches;
+  static const _recentSearchesLimit = 3;
+
+  final VehicleDatabase _database;
+
+  List<VehicleInfo> _recentSearches = [];
+  List<VehicleInfo> get recentSearches => _recentSearches;
 
   bool _isLoadingRecentSearches = false;
   bool get isLoadingRecentSearches => _isLoadingRecentSearches;
+
+  /// Reloads the recent searches list, e.g. after returning from a decode.
+  Future<void> refresh() => _loadRecentSearches();
 
   Future<void> _loadRecentSearches() async {
     _isLoadingRecentSearches = true;
     notifyListeners();
 
-    // TODO: replace with a real query once persistence is added.
-    await Future.delayed(const Duration(milliseconds: 300));
-    _recentSearches = _mockRecentSearches;
+    _recentSearches =
+        await _database.recentSearches(limit: _recentSearchesLimit);
 
     _isLoadingRecentSearches = false;
     notifyListeners();

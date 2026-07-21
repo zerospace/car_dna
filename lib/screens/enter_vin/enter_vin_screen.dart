@@ -3,6 +3,9 @@ import 'package:car_dna/screens/enter_vin/widgets/decode_vin_button.dart';
 import 'enter_vin_viewmodel.dart';
 // import 'widgets/decode_vin_button.dart';
 import 'widgets/vin_input_grid.dart';
+import 'package:car_dna/config/api_config.dart';
+import 'package:car_dna/services/vehicle_database.dart';
+import 'package:car_dna/services/vehicle_info_service.dart';
 import 'package:car_dna/theme/app_colors.dart';
 import 'package:car_dna/theme/app_typography.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +21,39 @@ class EnterVinScreen extends StatefulWidget {
 }
 
 class _EnterVinScreenState extends State<EnterVinScreen> {
-  late final _viewModel = EnterVinViewModel(initialVin: widget.initialVin);
+  late final _viewModel = EnterVinViewModel(
+    initialVin: widget.initialVin,
+    service: VehicleInfoService(apiKey: ApiConfig.autoDevApiKey),
+    database: VehicleDatabase.instance,
+  );
 
   @override
   void dispose() {
     _viewModel.dispose();
     super.dispose();
+  }
+
+  void _showError(BuildContext context, String message) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: AppColors.surfaceElevated,
+          content: Row(
+            children: [
+              const Icon(Symbols.error, size: 20, color: AppColors.error),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  message,
+                  style: AppTypography.helperBody.copyWith(color: AppColors.neutral50),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
   }
 
   @override
@@ -84,7 +114,13 @@ class _EnterVinScreenState extends State<EnterVinScreen> {
                     isLoading: _viewModel.isDecoding,
                     onTap: () async {
                       await _viewModel.decode();
-                      // TODO: open vehicle details
+                      if (!context.mounted) return;
+                      final error = _viewModel.errorMessage;
+                      if (error != null) {
+                        _showError(context, error);
+                      } else {
+                        // TODO: open vehicle details
+                      }
                     },
                   ),
                 ),

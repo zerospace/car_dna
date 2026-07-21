@@ -20,6 +20,10 @@ abstract final class AppColors {
   static const success = Color(0xFF34D399); // Shamrock
   static const successContainer = Color(0x2634D399); // success @ 15%
 
+  // Error / danger ------------------------------------------------------
+  static const error = Color(0xFFF87171); // Coral Red
+  static const errorContainer = Color(0x26F87171); // error @ 15%
+
   // Surfaces (dark) ------------------------------------------------------
   /// Outermost app background.
   static const background = Color(0xFF0A0A0B); // Woodsmoke

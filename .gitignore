@@ -1,3 +1,8 @@
+# Secrets / local env (do NOT commit — see env.example.json)
+env.json
+*.env
+.env
+
 # Miscellaneous
 *.class
 *.lock

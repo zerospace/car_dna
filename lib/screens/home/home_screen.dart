@@ -63,10 +63,11 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 12),
               EnterVinManuallyButton(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const EnterVinScreen())
+                onTap: () async {
+                  await Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const EnterVinScreen(initialVin: 'LJCPCBLCX11000237'))
                   );
+                  await _viewModel.refresh();
                 },
               ),
               const SizedBox(height: 34),

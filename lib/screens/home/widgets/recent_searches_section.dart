@@ -1,4 +1,4 @@
-import 'package:car_dna/models/recent_search.dart';
+import 'package:car_dna/models/vehicle_info.dart';
 import 'package:car_dna/screens/home/widgets/recent_search_tile.dart';
 import 'package:car_dna/theme/app_colors.dart';
 import 'package:car_dna/theme/app_typography.dart';
@@ -13,10 +13,10 @@ class RecentSearchesSection extends StatelessWidget {
     required this.onTapItem,
   });
 
-  final List<RecentSearch> recentSearches;
+  final List<VehicleInfo> recentSearches;
   final bool isLoading;
   final VoidCallback onSeeAll;
-  final ValueChanged<RecentSearch> onTapItem;
+  final ValueChanged<VehicleInfo> onTapItem;
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +97,7 @@ class RecentSearchesSection extends StatelessWidget {
       itemBuilder: (context, index) {
         final recentSearch = recentSearches[index];
         return RecentSearchTile(
-          recentSearch: recentSearch,
+          vehicle: recentSearch,
           onTap: () => onTapItem(recentSearch),
         );
       },
