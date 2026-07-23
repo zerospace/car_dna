@@ -90,4 +90,7 @@ abstract final class AppColors {
   /// Circular icon-badge surface, e.g. the app-bar back button.
   /// (Figma grey/9-2)
   static const surfaceBadge = Color(0xFF151518);
+
+  static const iconTileGradientStart = Color(0xFF16161A);
+  static const iconTileGradientEnd = Color(0xFF1C1C22);
 }

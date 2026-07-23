@@ -33,6 +33,7 @@ class VehicleInfo {
     this.transmission,
     this.vehicle,
     this.ambiguous,
+    required this.searchedAt,
   });
 
   /// The 17-character VIN that was decoded.
@@ -72,6 +73,8 @@ class VehicleInfo {
   /// Whether the VIN matched more than one possible vehicle.
   final bool? ambiguous;
 
+  final DateTime searchedAt;
+
   factory VehicleInfo.fromJson(Map<String, dynamic> json) {
     return VehicleInfo(
       vin: (json['vin'] ?? '') as String,
@@ -94,6 +97,7 @@ class VehicleInfo {
           ? null
           : Vehicle.fromJson(_asMap(json['vehicle'])),
       ambiguous: json['ambiguous'] as bool?,
+      searchedAt: json['searched_at'] == null ? DateTime.now() : DateTime.fromMillisecondsSinceEpoch(json['searched_at'] as int),
     );
   }
 
@@ -115,7 +119,7 @@ class VehicleInfo {
         'drive': drive,
         'transmission': transmission,
         if (vehicle != null) 'vehicle': vehicle!.toJson(),
-        'ambiguous': ambiguous,
+        'ambiguous': ambiguous
       };
 
   // --- Database persistence -------------------------------------------------
@@ -137,13 +141,14 @@ class VehicleInfo {
         'year': year,
         'make': make,
         'model': model,
+        'searched_at': searchedAt.millisecondsSinceEpoch,
         'data': jsonEncode(toJson()),
       };
 
   factory VehicleInfo.fromDbMap(Map<String, dynamic> row) {
-    return VehicleInfo.fromJson(
-      jsonDecode(row['data'] as String) as Map<String, dynamic>,
-    );
+    final json = jsonDecode(row['data'] as String) as Map<String, dynamic>;
+    json['searched_at'] = row['searched_at'];
+    return VehicleInfo.fromJson(json);
   }
 }
 

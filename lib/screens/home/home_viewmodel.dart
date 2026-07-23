@@ -18,7 +18,6 @@ class HomeViewModel extends ChangeNotifier {
   bool _isLoadingRecentSearches = false;
   bool get isLoadingRecentSearches => _isLoadingRecentSearches;
 
-  /// Reloads the recent searches list, e.g. after returning from a decode.
   Future<void> refresh() => _loadRecentSearches();
 
   Future<void> _loadRecentSearches() async {

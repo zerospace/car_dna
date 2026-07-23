@@ -1,4 +1,5 @@
 import 'package:car_dna/screens/enter_vin/enter_vin_screen.dart';
+import 'package:car_dna/screens/history/history_screen.dart';
 import 'package:car_dna/screens/home/home_viewmodel.dart';
 import 'package:car_dna/screens/home/widgets/enter_vin_manually_button.dart';
 import 'package:car_dna/screens/home/widgets/recent_searches_section.dart';
@@ -58,14 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 24,),
               ScanVinButton(
                 onTap: () {
-                  // open scan view
+                  // TODO: open scan view
                 },
               ),
               const SizedBox(height: 12),
               EnterVinManuallyButton(
                 onTap: () async {
                   await Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const EnterVinScreen(initialVin: 'WBA3C3G50ENS69369'))
+                    MaterialPageRoute(builder: (_) => const EnterVinScreen())
                   );
                   await _viewModel.refresh();
                 },
@@ -79,7 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       recentSearches: _viewModel.recentSearches,
                       isLoading: _viewModel.isLoadingRecentSearches,
                       onSeeAll: () {
-                        // TODO: open full recent searches history
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const HistoryScreen()
+                          )
+                        );
                       },
                       onTapItem: (recentSearch) {
                         // TODO: open vehicle details

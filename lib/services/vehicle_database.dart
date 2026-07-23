@@ -71,23 +71,16 @@ class VehicleDatabase {
     return VehicleInfo.fromDbMap(rows.first);
   }
 
-  /// Inserts or replaces the row for [info] (keyed by VIN), stamping it with
-  /// the current time so it surfaces at the top of [recentSearches].
   Future<void> save(VehicleInfo info) async {
     final db = await _database;
     await db.insert(
       table,
-      {
-        ...info.toDbMap(),
-        'searched_at': DateTime.now().millisecondsSinceEpoch,
-      },
+      info.toDbMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
 
-  /// Returns the most recently searched vehicles, newest first, capped at
-  /// [limit] rows.
-  Future<List<VehicleInfo>> recentSearches({int limit = 3}) async {
+  Future<List<VehicleInfo>> recentSearches({int? limit}) async {
     final db = await _database;
     final rows = await db.query(
       table,
@@ -97,7 +90,6 @@ class VehicleDatabase {
     return rows.map(VehicleInfo.fromDbMap).toList();
   }
 
-  /// Closes the shared connection. Rarely needed — the OS reclaims it on exit.
   Future<void> close() async {
     await _db?.close();
     _db = null;

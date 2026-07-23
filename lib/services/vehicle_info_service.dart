@@ -77,23 +77,11 @@ class VehicleInfoService {
   final Uri _baseUrl;
   final Duration _timeout;
 
-  /// Decodes [vin] and returns the parsed [VehicleInfo].
-  ///
-  /// Throws [VehicleInfoException] on any failure (bad VIN, auth, network,
-  /// server, parsing, …). Callers should wrap this in try/catch.
   Future<VehicleInfo> fetchByVin(String vin) async {
-    final normalized = vin.trim().toUpperCase();
-    if (normalized.length != 17) {
-      throw const VehicleInfoException(
-        VehicleInfoErrorType.invalidVin,
-        'VIN must be 17 characters long.',
-      );
-    }
-
     final uri = _baseUrl.replace(pathSegments: [
       ..._baseUrl.pathSegments.where((s) => s.isNotEmpty),
       'vin',
-      normalized,
+      vin,
     ]);
 
     final http.Response response;
