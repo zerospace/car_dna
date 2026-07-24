@@ -1,6 +1,7 @@
 import 'package:car_dna/screens/history/history_viewmodel.dart';
 import 'package:car_dna/screens/history/widgets/history_item.dart';
 import 'package:car_dna/screens/history/widgets/history_search_bar.dart';
+import 'package:car_dna/screens/vehicle/vehicle_details_screen.dart';
 import 'package:car_dna/theme/app_colors.dart';
 import 'package:car_dna/theme/app_typography.dart';
 import 'package:flutter/material.dart';
@@ -105,7 +106,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
         return HistoryItem(
           vehicle: info,
           onTap: () {
-            // TODO: open vehicle details
+            Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (_) => VehicleDetailsScreen(vehicle: info)
+                )
+            );
           },
         );
       },

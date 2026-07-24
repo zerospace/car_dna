@@ -16,6 +16,9 @@ abstract final class AppColors {
   static const primaryContainer = Color(0x474D8DFF); // primary @ 28%
   static const primarySubtleContainer = Color(0x244D8DFF); // primary @ 14%
 
+  /// Border for the highlighted trim chip on the vehicle-details screen.
+  static const primaryBorder = Color(0x4D4D8DFF); // primary @ 30%
+
   // Success / confirmation ---------------------------------------------
   static const success = Color(0xFF34D399); // Shamrock
   static const successContainer = Color(0x2634D399); // success @ 15%

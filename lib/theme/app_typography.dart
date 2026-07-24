@@ -118,6 +118,69 @@ abstract final class AppTypography {
   static TextStyle get logo =>
       _jakarta(fontSize: 18, fontWeight: FontWeight.w800, letterSpacing: -0.3, color: AppColors.textPrimary);
 
+  // Vehicle details screen ----------------------------------------------
+
+  /// Vehicle name headline, e.g. "Honda Accord". (ExtraBold 28/-0.5)
+  static TextStyle get vehicleTitle => _jakarta(
+    fontSize: 28,
+    fontWeight: FontWeight.w800,
+    letterSpacing: -0.5,
+    height: 1.1,
+    color: AppColors.neutral50,
+  );
+
+  /// Model-year eyebrow above the vehicle name, e.g. "2020". (Mono 14)
+  static TextStyle get vehicleYear =>
+      _mono(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.textMuted);
+
+  /// Identity pill label, e.g. "EX-L", "Sedan". (SemiBold 13)
+  static TextStyle get chipLabel =>
+      _jakarta(fontSize: 13, fontWeight: FontWeight.w600);
+
+  /// Uppercase spec-card label, e.g. "ENGINE". (Bold 11/0.5)
+  static TextStyle get specLabel => _jakarta(
+    fontSize: 11,
+    fontWeight: FontWeight.w700,
+    letterSpacing: 0.5,
+    color: AppColors.textFaint,
+  );
+
+  /// Spec-card value, e.g. "1.5L Turbo I4". (Bold 15.5/-0.2)
+  static TextStyle get specValue => _jakarta(
+    fontSize: 15.5,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.2,
+    color: AppColors.neutral50,
+  );
+
+  /// Collapsible section header, e.g. "Features & options". (Bold 15)
+  static TextStyle get sectionTitle =>
+      _jakarta(fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.neutral50);
+
+  /// "VIN" caption on the VIN readout card. (Mono 9/1)
+  static TextStyle get vinLabel => _mono(
+    fontSize: 9,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 1,
+    color: AppColors.textFaint,
+  );
+
+  /// The VIN value on the readout card. (Mono 13/0.5)
+  static TextStyle get vinValue => _mono(
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+    letterSpacing: 0.5,
+    color: AppColors.neutral200,
+  );
+
+  /// Left-hand label in a detail-section row. (Regular 14, muted)
+  static TextStyle get detailLabel =>
+      _jakarta(fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.textMuted);
+
+  /// Right-hand value in a detail-section row. (Medium 14)
+  static TextStyle get detailValue =>
+      _jakarta(fontSize: 14, fontWeight: FontWeight.w500, color: AppColors.neutral100);
+
   static TextStyle get monoEyebrowAccent => _mono(
       fontSize: 11,
       fontWeight: FontWeight.w400,

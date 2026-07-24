@@ -1,4 +1,5 @@
 import 'package:car_dna/screens/enter_vin/widgets/decode_vin_button.dart';
+import 'package:car_dna/screens/vehicle/vehicle_details_screen.dart';
 
 import 'enter_vin_viewmodel.dart';
 // import 'widgets/decode_vin_button.dart';
@@ -116,10 +117,15 @@ class _EnterVinScreenState extends State<EnterVinScreen> {
                       await _viewModel.decode();
                       if (!context.mounted) return;
                       final error = _viewModel.errorMessage;
+                      final result = _viewModel.result;
                       if (error != null) {
                         _showError(context, error);
-                      } else {
-                        // TODO: open vehicle details
+                      } else if (result != null) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => VehicleDetailsScreen(vehicle: result),
+                          ),
+                        );
                       }
                     },
                   ),

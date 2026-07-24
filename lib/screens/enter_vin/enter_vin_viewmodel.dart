@@ -28,6 +28,9 @@ class EnterVinViewModel extends ChangeNotifier {
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
+  VehicleInfo? _result;
+  VehicleInfo? get result => _result;
+
   bool _disposed = false;
 
   static const vinLength = 17;
@@ -47,7 +50,6 @@ class EnterVinViewModel extends ChangeNotifier {
       .join();
 
   void _onVinChanged() {
-    // Editing the VIN clears any stale error before notifying listeners.
     if (_errorMessage != null) _errorMessage = null;
     notifyListeners();
   }
@@ -61,6 +63,7 @@ class EnterVinViewModel extends ChangeNotifier {
     try {
       final info = await _decodeVin(vin);
       if (_disposed) return; // Screen left mid-request — drop the result.
+      _result = info;
       _printVehicleInfo(info);
     } on VehicleInfoException catch (e) {
       if (_disposed) return; // Request was aborted by dispose(); ignore.

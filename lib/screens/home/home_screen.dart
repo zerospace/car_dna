@@ -4,6 +4,8 @@ import 'package:car_dna/screens/home/home_viewmodel.dart';
 import 'package:car_dna/screens/home/widgets/enter_vin_manually_button.dart';
 import 'package:car_dna/screens/home/widgets/recent_searches_section.dart';
 import 'package:car_dna/screens/home/widgets/scan_vin_button.dart';
+import 'package:car_dna/screens/scanner/scanner_screen.dart';
+import 'package:car_dna/screens/vehicle/vehicle_details_screen.dart';
 import 'package:car_dna/theme/app_colors.dart';
 import 'package:car_dna/theme/app_typography.dart';
 import 'package:flutter/material.dart';
@@ -58,8 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
               )),
               const SizedBox(height: 24,),
               ScanVinButton(
-                onTap: () {
-                  // TODO: open scan view
+                onTap: () async {
+                  await Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const ScannerScreen()),
+                  );
+                  await _viewModel.refresh();
                 },
               ),
               const SizedBox(height: 12),
@@ -86,8 +91,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         );
                       },
-                      onTapItem: (recentSearch) {
-                        // TODO: open vehicle details
+                      onTapItem: (vehicle) {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => VehicleDetailsScreen(vehicle: vehicle)
+                          )
+                        );
                       },
                     );
                   },

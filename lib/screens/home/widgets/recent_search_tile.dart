@@ -52,6 +52,8 @@ class RecentSearchTile extends StatelessWidget {
                     children: [
                       Text(
                         vehicle.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: AppTypography.textTheme.titleSmall?.copyWith(
                           color: AppColors.neutral50,
                         ),
